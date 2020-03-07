@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Helmet } from "react-helmet";
 import { Link, withRouter } from 'react-router-dom';
-import { Row, Col, Layout, Menu, Icon, Button, Drawer } from 'antd';
+import { Row, Col, Layout, Menu } from 'antd';
 import './css/Main.css';
 
 const { Header, Content, Footer } = Layout;
-const { SubMenu } = Menu;
 
 class Main extends Component {
 
@@ -50,8 +49,6 @@ class Main extends Component {
                             >
 
                                 <Menu.Item key="/"><Link to="/">Home</Link></Menu.Item>
-
-                                <Menu.Item key="/"><Link to="/">Explore</Link></Menu.Item>
 
                             </Menu>
 
