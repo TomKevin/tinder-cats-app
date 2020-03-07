@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './../layout/Main';
 import { Link } from 'react-router-dom';
-import { StarOutlined, LikeOutlined } from '@ant-design/icons';
+import { StarOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import { Row, Col, Card, Button } from 'antd';
 import { getFavourites, deleteFavourite } from './../../store/actions/favouriteActions';
@@ -55,15 +55,13 @@ class Index extends Component {
 
                                 style={{ width: '100%' }}
 
-                                cover={<Link to={`/cats/${favourite.image.id}`}><img alt={favourite.image.id} style={{ height: '100%', objectFit: 'cover', width: '100%' }} src={favourite.image.url} /></Link>}
+                                cover={<Link to={`/cats/${favourite.image.id}`}><img alt={favourite.image.id} style={{ height: '200px', objectFit: 'cover', width: '100%' }} src={favourite.image.url} /></Link>}
 
                             >
 
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
                                     <Button type="danger" icon={<StarOutlined/>} onClick={() => this.removeFavourite(favourite.id)}> Remove Favourite</Button>
-
-                                    <Button type="primary" icon={<LikeOutlined />}>Like</Button>
 
                                 </div>
 

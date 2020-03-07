@@ -50,10 +50,6 @@ export const uploadImage = (data) => async dispatch => {
 
         const response = await instance.post(`/images/upload`, formData);
 
-        // dispatch({ type: IMAGES, payload: response.data });
-
-        alert(`${JSON.stringify(response.data)}`);
-
         return response.data;
         
     } catch (error) {
