@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Carousel } from 'antd';
+import { Row, Col, Carousel, Card } from 'antd';
 import { connect } from 'react-redux';
 import { getImages } from './../store/actions/imageActions';
 import Layout from './layout/Main';
@@ -12,13 +12,9 @@ class Index extends Component {
 
     }
 
-    onChange = (a, b, c) => {
-
-        console.log(a, b, c);
-
-    }
-
     render() {
+
+        const { images: { images } } = this.props;
 
         return (
 
@@ -26,27 +22,45 @@ class Index extends Component {
 
                 <Row>
 
-                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ margin: '2em 0' }}>
 
-                        <Carousel afterChange={this.onChange}>
+                        <Carousel autoplay={true} dotPosition="bottom" effect="fade">
 
-                            <div>
-                                <h3>1</h3>
-                            </div>
-
-                            <div>
-                                <h3>2</h3>
-                            </div>
-
-                            <div>
-                                <h3>3</h3>
-                            </div>
-
-                            <div>
-                                <h3>4</h3>
-                            </div>
+                            {images.map((image, i) => 
+                            
+                                <div key={i} className="carousel-item"><img src={image.url} alt={image.original_filename} className="carousel-img" /></div>
+                            
+                            )}
 
                         </Carousel>
+
+                    </Col>
+
+                    <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+
+                        <Row gutter={[16, 16]}>
+        
+                            {images.map((image, i) => 
+                            
+                                <Col xs={24} sm={24} md={12} lg={8} xl={8} key={i}>
+
+                                    <Card
+
+                                        hoverable
+
+                                        onClick={() => {}}
+
+                                        style={{ width: '100%' }}
+
+                                        cover={<img alt={image.original_filename} style={{ height: '200px', objectFit: 'cover', width: '100%' }} src={image.url} />}
+
+                                    ></Card>
+
+                                </Col>
+                            
+                            )}
+
+                        </Row>
 
                     </Col>
 
