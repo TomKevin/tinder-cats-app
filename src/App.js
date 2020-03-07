@@ -6,6 +6,7 @@ import './App.css';
 import Index from './components/Index';
 import ShowCat from './components/cats/Show';
 import Favourites from './components/favourites/Index';
+import NotFound from './components/NotFound';
 
 const App = () => {
 
@@ -20,6 +21,8 @@ const App = () => {
         <Route path="/cats/:id" exact strict component={ShowCat} />
 
         <Route path="/favourites" exact strict component={Favourites} />
+
+        <Route path="*" exact strict component={NotFound} />
 
       </Switch>
 
