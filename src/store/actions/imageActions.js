@@ -20,6 +20,25 @@ export const getImages = () => async dispatch => {
 
 };
 
+// Show Single CAT Image Based On id
+export const getImage = (id) => async dispatch => {
+
+    try {
+
+        const response = await instance.get(`/images/${id}`);
+
+        dispatch({ type: IMAGE, payload: response.data });
+
+        return response.data;
+        
+    } catch (error) {
+
+        throw error.response.data;
+        
+    }
+
+};
+
 // Upload CAT Image
 export const uploadImage = (data) => async dispatch => {
 

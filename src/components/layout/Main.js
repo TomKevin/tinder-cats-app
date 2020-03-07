@@ -50,6 +50,8 @@ class Main extends Component {
 
                                 <Menu.Item key="/"><Link to="/">Home</Link></Menu.Item>
 
+                                <Menu.Item key="/favourites"><Link to="/favourites">My Favourites</Link></Menu.Item>
+
                             </Menu>
 
                         </Col>

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col, Carousel, Card } from 'antd';
+import { Row, Col, Carousel, Card, Button } from 'antd';
+import { StarOutlined, LikeOutlined } from '@ant-design/icons';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getImages } from './../store/actions/imageActions';
+import  { saveAsFavourite } from './../store/actions/favouriteActions';
 import Layout from './layout/Main';
 
 class Index extends Component {
@@ -9,6 +12,30 @@ class Index extends Component {
     componentDidMount = async () => {
 
         await this.props.getImages();
+
+    }
+
+    saveFavourite = async (id) => {
+
+        try {
+
+            const obj = {};
+
+            obj.image_id = id;
+
+            const result = await this.props.saveAsFavourite(obj);
+
+            if(result) {
+
+                return this.props.history.push('/favourites');
+
+            }
+            
+        } catch (error) {
+
+            console.log(error);
+            
+        }
 
     }
 
@@ -48,13 +75,21 @@ class Index extends Component {
 
                                         hoverable
 
-                                        onClick={() => {}}
-
                                         style={{ width: '100%' }}
 
-                                        cover={<img alt={image.original_filename} style={{ height: '200px', objectFit: 'cover', width: '100%' }} src={image.url} />}
+                                        cover={<Link to={`/cats/${image.id}`}><img alt={image.original_filename} style={{ height: '100%', objectFit: 'cover', width: '100%' }} src={image.url} /></Link>}
 
-                                    ></Card>
+                                    >
+
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                                            <Button type="primary" icon={<StarOutlined/>} onClick={() => this.saveFavourite(image.id)}> Favourite</Button>
+
+                                            <Button type="primary" icon={<LikeOutlined />}>Like</Button>
+
+                                        </div>
+
+                                    </Card>
 
                                 </Col>
                             
@@ -84,4 +119,4 @@ const mapStateToProps = (state, ownProps) => {
 
 };
 
-export default connect(mapStateToProps, { getImages })(Index);
+export default connect(mapStateToProps, { getImages, saveAsFavourite })(withRouter(Index));

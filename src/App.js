@@ -4,6 +4,8 @@ import './App.css';
 
 // Defining Route Components
 import Index from './components/Index';
+import ShowCat from './components/cats/Show';
+import Favourites from './components/favourites/Index';
 
 const App = () => {
 
@@ -14,6 +16,10 @@ const App = () => {
       <Switch>
 
         <Route path="/" exact strict component={Index} />
+
+        <Route path="/cats/:id" exact strict component={ShowCat} />
+
+        <Route path="/favourites" exact strict component={Favourites} />
 
       </Switch>
 
